@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='logo.png') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+</head>
+<body>
+    <br><br>
+    {% if messages %}
+        <div class="container">        
+            {% for message in messages %}
+                <p class="question">{{ message.question }}</p>
+                <br> <br> <br> 
+                <p class="answer">{{ message.answer }}</p>
+            {% endfor %} 
+        </div>
+    {% else %}
+        <div class="empty">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='logo.png') }}" alt="">
+            </div>
+            <h1>Hi, how can I help you?</h1>
+        </div>
+    {% endif %}
+    <br><br>
+    <form method="POST" action="/generate">
+        <input type="text" name="text" placeholder="Enter your message" required>
+        <button type="submit">
+            <div>
+            <img src="{{ url_for('static', filename='send.png') }}" alt="">
+            </div>
+        </button>
+    </form>
+</body>
+</html>
